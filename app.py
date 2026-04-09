@@ -11,26 +11,38 @@ DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
 DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
 
 # Initialize Doubao client (compatible with OpenAI SDK)
-deepseek_client = openai.OpenAI(api_key=DEEPSEEK_API_KEY, base_url=DEEPSEEK_BASE_URL, timeout=60.0)
+import sys # Added this import
 
-# Tianapi Hot Search API Key
-TIANAPI_KEY = os.environ.get("TIANAPI_API_KEY")
+# Initialize DeepSeek client (compatible with OpenAI SDK)
+# We initialize deepseek_client only if DEEPSEEK_API_KEY is available
+deepseek_client = None
+
+# Ensure API keys are set before proceeding
+if not DEEPSEEK_API_KEY:
+    print("Error: DEEPSEEK_API_KEY environment variable is not set. Exiting.")
+    sys.exit(1) # Exit immediately if key is missing
+
+if not TIANAPI_KEY:
+    print("Error: TIANAPI_API_KEY environment variable is not set. Exiting.")
+    sys.exit(1) # Exit immediately if key is missing
+
+deepseek_client = openai.OpenAI(api_key=DEEPSEEK_API_KEY, base_url=DEEPSEEK_BASE_URL, timeout=60.0)
 
 # Test DeepSeek API key validity on startup
 try:
-    if DEEPSEEK_API_KEY:
-        test_response = deepseek_client.chat.completions.create(
-            model="deepseek-chat",
-            messages=[{"role": "user", "content": "Hello"}],
-            max_tokens=1
-        )
-        print("DeepSeek API key is valid.")
-    else:
-        print("Error: DEEPSEEK_API_KEY environment variable is not set. AI generation will not work.")
-        # Optionally, you might want to sys.exit(1) or disable AI features
-
-    if not TIANAPI_KEY:
-        print("Error: TIANAPI_API_KEY environment variable is not set. Hot search fetching will not work.")
+    test_response = deepseek_client.chat.completions.create(
+        model="deepseek-chat",
+        messages=[{"role": "user", "content": "Hello"}],
+        max_tokens=1
+    )
+    print("DeepSeek API key is valid.")
+except openai.APIStatusError as e:
+    print(f"Error: DeepSeek API key is invalid or API call failed: {e}")
+    print("Please check your DeepSeek API key and ensure it has the necessary permissions.")
+    sys.exit(1) # Exit if API key test fails
+except Exception as e:
+    print(f"An unexpected error occurred while testing DeepSeek API key: {e}")
+    sys.exit(1) # Exit for other unexpected errors during key test
 except openai.APIStatusError as e:
     print(f"Error: DeepSeek API key is invalid or API call failed: {e}")
     print("Please check your DeepSeek API key and ensure it has the necessary permissions.")
