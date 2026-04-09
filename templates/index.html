@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热搜榜单</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>今日热搜榜</h1>
+        <div class="main-content"> <!-- New container for two-column layout -->
+            <ul id="hot-searches-list" class="hot-searches-list">
+                <!-- Hot searches will be loaded here by JavaScript -->
+            </ul>
+            <div id="ai-generated-content" class="ai-generated-content" style="display: none;">
+                <h2>AI生成内容</h2>
+                <p id="ai-text"></p>
+                <img id="ai-image" src="" alt="" style="display: none;"> <!-- Hidden by default -->
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

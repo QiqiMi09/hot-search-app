@@ -1,0 +1,125 @@
+body {
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+h1 {
+    text-align: center;
+    color: #6a11cb;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+.main-content {
+    display: flex;
+    gap: 30px; /* Space between the two columns */
+    align-items: flex-start; /* Align items to the top */
+    margin-top: 20px; /* Add some space below the main heading */
+}
+
+.hot-searches-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: 1; /* Allow it to grow and shrink, taking up equal space initially */
+    min-width: 300px; /* Ensure it doesn't get too small */
+}
+
+.hot-searches-list li {
+    background-color: #f0f8ff;
+    margin-bottom: 12px;
+    padding: 18px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e0e7ff;
+}
+
+.hot-searches-list li:hover {
+    background-color: #e6f2ff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hot-searches-list li .rank {
+    font-weight: bold;
+    color: #2575fc;
+    margin-right: 20px;
+    font-size: 1.4em;
+    min-width: 30px;
+    text-align: center;
+}
+
+.hot-searches-list li .title {
+    font-size: 1.2em;
+    color: #333;
+    flex-grow: 1;
+}
+
+.ai-generated-content {
+    flex: 2; /* Allow it to take up more space */
+    min-width: 400px; /* Ensure it doesn't get too small */
+    margin-top: 0; /* Remove previous top margin as it's now part of flex layout */
+    padding: 30px;
+    background: linear-gradient(to right, #f7f9fc, #eef2f6);
+    border-radius: 12px;
+    border: 1px solid #dcdfe4;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ai-generated-content h2 {
+    color: #007bff;
+    margin-bottom: 25px;
+    font-size: 2em;
+}
+
+.ai-generated-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
+}
+
+.ai-generated-content p {
+    font-size: 1.15em;
+    line-height: 1.8;
+    color: #555;
+    margin-top: 20px;
+    text-align: left;
+    padding: 0 15px;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+        align-items: stretch; /* Stretch items to full width */
+    }
+    .hot-searches-list,
+    .ai-generated-content {
+        flex: none; /* Remove flex sizing */
+        width: 100%; /* Take full width */
+        min-width: unset; /* Remove min-width constraint */
+    }
+    .ai-generated-content {
+        margin-top: 30px; /* Add some top margin when stacked */
+    }
+}
