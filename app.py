@@ -10,6 +10,9 @@ ai_content_cache = {}
 DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY")
 DEEPSEEK_BASE_URL = "https://api.deepseek.com/v1"
 
+# Tianapi Hot Search API Key
+TIANAPI_KEY = os.environ.get("TIANAPI_API_KEY")
+
 # Initialize Doubao client (compatible with OpenAI SDK)
 import sys # Added this import
 
